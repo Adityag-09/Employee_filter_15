@@ -3,8 +3,12 @@ import axios from 'axios';
 /**
  * Axios instance configured with base URL and JWT interceptor
  */
+const isProduction = window.location.hostname !== 'localhost';
+
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: isProduction
+    ? 'https://employee-filter-15.onrender.com/api'
+    : 'http://localhost:5000/api',
 });
 
 // Attach JWT token to every request if available
